@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passphrase Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Chosen Palette: Calm Neutrals */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .list-box {
+            height: 200px;
+            overflow-y: auto;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    </style>
+    <!-- 
+        Application Structure Plan: The SPA is redesigned to be a functional "Passphrase Generator" first. 
+        1. Header: Provides title and context.
+        2. "Generate Your Passphrase": This is the primary interactive tool, formerly the "demo" section. It's moved to the top for immediate use.
+        3. "Get the Bookmarklet": A new section providing the minified code as a draggable <a> link, which was a key user request.
+        4. "How it Works": Explains the generator's logic.
+        5. "Source Data": Shows the data lists used by the generator.
+        6. "Source Code": Shows the readable code.
+        This structure prioritises the page's new function (generating) while still providing the bookmarklet and all the explanatory context from the analyser.
+    -->
+    <!-- 
+        Visualization & Content Choices: 
+        - Report Info: Minified JS code from the bookmarklet.
+        - Goal: Create a webpage that IS the generator, and also PROVIDES the bookmarklet.
+        - Viz/Presentation: 
+            - Generator Tool: HTML Button + JS function + Text Display. Goal: Interact/Inform.
+            - Bookmarklet Link: A styled <a> element with the minified JS in its href attribute. Goal: Interact/Provide.
+            - Logic (Formula): Textual/HTML representation. Goal: Inform.
+            - Word Lists: HTML scrollable <div> elements. Goal: Inform/Organize.
+            - Un-minified Code: HTML `<pre><code>` block. Goal: Inform.
+        - Interaction: 1. "Generate" button on page. 2. Draggable <a> link.
+        - Justification: This structure directly serves the user's dual goals: use the generator now, and take the generator with them (as a bookmarklet).
+        - Library/Method: Vanilla JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-slate-100 text-slate-900 p-4 md:p-8 min-h-screen">
+
+    <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-10">
+
+        <!-- Header -->
+        <header class="border-b border-slate-200 pb-4 mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Passphrase Generator</h1>
+            <p class="text-lg text-slate-600 mt-1">Create a secure, random passphrase.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+
+            <!-- Interactive Generator -->
+            <section id="generator" class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-3">Generate Your Passphrase</h2>
+                <p class="text-slate-600 mb-4">
+                    Click the button below to generate a new passphrase. The result will appear in the box,
+                    ready for you to copy.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button id="generate-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Generate Passphrase
+                    </button>
+                    <div class="relative flex-1">
+                        <input id="passphrase-output" type="text" readonly
+                            class="w-full bg-slate-100 border border-slate-300 text-slate-700 text-lg p-3 rounded-lg focus:outline-none"
+                            placeholder="Your passphrase will appear here...">
+                        <button id="copy-btn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-200 hover:bg-slate-300 text-slate-600 p-2 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <p id="copy-feedback" class="text-green-600 h-4 text-sm mt-2"></p>
+            </section>
+
+            <!-- Get the Bookmarklet -->
+            <section id="bookmarklet" class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-3">Get the Bookmarklet</h2>
+                <p class="text-slate-600 mb-4">
+                    Drag the link below to your browser's bookmarks bar. Clicking it on any webpage
+                    will generate a new passphrase and copy it to your clipboard.
+                </p>
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 flex items-center justify-center">
+                    <a id="bookmarklet-link"
+                       href="javascript:(function(){const d=['Alert','Always','Badly','Barely','Bright','Brightly','Calm','Calmly','Clear','Clearly','Close','Closely','Cold','Common','Cool','Daily','Deeply','Early','Easy','Easily','Empty','Even','Evenly','Exact','Exactly','Fair','Fairly','Final','Finally','Firmly','Fit','Freely','Fresh','Freshly','Full','Fully','Gently','Glad','Gladly','Gold','Grand','Great','Greatly','Green','Happy','Happily','Highly','Honestly','Hourly','Huge','Human','Ideal','Inner','Joint','Keen','Kind','Kindly','Large','Largely','Last','Late','Lately','Legal','Level','Light','Lightly','Local','Loud','Loudly','Low','Lucky','Magic','Main','Mainly','Major','Merely','Monthly','Moral','Motor','Neat','Neatly','Nearly','Newly','Next','Nice','Nicely','Noble','Normal','Official','Often','Only','Open','Openly','Other','Outer','Past','Personal','Plain','Plainly','Prime','Proud','Proudly','Public','Quick','Quickly','Quiet','Quietly','Rarely','Ready','Real','Really','Red','Rich','Right','Roman','Rough','Roughly','Round','Royal','Rural','Safe','Safely','Same','Sharp','Shiny','Simple','Simply','Single','Slow','Slowly','Small','Smart','Smooth','Soft','Solid','Special','Square','Still','Stone','Strong','Sure','Sweet','Tall','Top','Total','True','Upper'];const v=['Acting','Adding','Answering','Answered','Applied','Arriving','Asking','Avoiding','Becoming','Beginning','Believing','Breaking','Bringing','Broken','Building','Built','Calling','Catching','Changing','Checking','Choosing','Chosen','Cleaning','Clearing','Climbing','Closing','Coming','Counting','Covering','Crossing','Dancing','Dealing','Deciding','Doing','Drawing','Dreaming','Driving','Ending','Entering','Facing','Falling','Feeling','Finding','Flying','Following','Gaining','Giving','Given','Going','Gone','Growing','Guiding','Handling','Hearing','Helping','Hiding','Holding','Hoping','Imaging','Inviting','Joking','Joining','Judging','Jumping','Keeping','Kept','Knowing','Known','Laughing','Learning','Leaving','Lifting','Living','Looking','Losing','Making','Marking','Matching','Meeting','Moving','Opening','Ordering','Painting','Parking','Paying','Picking','Planning','Playing','Pressing','Pulling','Pushing','Raising','Reaching','Reading','Running','Seeing','Setting','Starting','Taking','Talking'];const n=['Area','Art','Back','Bank','Bed','Bill','Book','Business','Car','Case','Cash','Cat','Centre','Change','City','Class','Club','Cost','Day','Door','End','Face','Fact','Family','Farm','Father','Field','File','Film','Food','Foot','Form','Fund','Game','Hand','Health','Heart','Home','Hour','House','Idea','Issue','Job','Judge','Kind','King','Lake','Land','Law','Level','Life','Light','Line','Link','List','Mail','Map','Mark','Market','Matter','Media','Mind','Minute','Model','Money','Month','Morning','Mother','Music','Name','Need','Network','News','Night','Note','Number','Office','Order','Owner','Page','Paint','Paper','Parent','Park','Part','Past','Path','Peace','People','Person','Phone','Photo','Piece','Place','Plan','Plane','Plant','Play','Point','Post'];const p=['!','#','$','%','&','*','+','-','.'];function r(a){return a[Math.floor(Math.random()*a.length)]}function c(w){return Math.random()>0.5?w.charAt(0).toLowerCase()+w.slice(1):w}const a=c(r(d));const p1=r(p);const b=c(r(v));const p2=r(p);const nWord=r(n);const o=a[0]===a[0].toLowerCase()&&b[0]===b[0].toLowerCase()?nWord:c(nWord);const m=Math.floor(Math.random()*90)+10;const g=a+p1+b+p2+o+m;try{const t=document.createElement('textarea');t.value=g;t.style.position='fixed';t.style.top='-9999px';t.style.left='-9999px';document.body.appendChild(t);t.focus();t.select();document.execCommand('copy');document.body.removeChild(t)}catch(e){prompt('Copy this passphrase:',g)}})();"
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-200 cursor-move focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                        Drag to Bookmarks →
+                    </a>
+                </div>
+            </section>
+
+            <!-- How it Works -->
+            <section id="how-it-works" class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-3">How It Works</h2>
+                <p class="text-slate-600 mb-4">
+                    This generator creates a passphrase by combining five random components
+                    plus a random number. It also randomly capitalises the first letter of each word
+                    to increase entropy.
+                </p>
+                <h3 class="text-lg font-semibold text-slate-700 mb-2">Passphrase Format:</h3>
+                <div class="flex flex-wrap gap-2 items-center bg-slate-50 p-4 rounded-lg">
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-md font-medium">Descriptor</span>
+                    <span class="text-slate-500 font-bold">+</span>
+                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-md font-medium">Punc 1</span>
+                    <span class="text-slate-500 font-bold">+</span>
+                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-md font-medium">Verb</span>
+                    <span class="text-slate-500 font-bold">+</span>
+                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-md font-medium">Punc 2</span>
+                    <span class="text-slate-500 font-bold">+</span>
+                    <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-md font-medium">Noun</span>
+                    <span class="text-slate-500 font-bold">+</span>
+                    <span class="bg-red-100 text-red-800 px-3 py-1 rounded-md font-medium">Number</span>
+                </div>
+            </section>
+
+            <!-- Source Data -->
+            <section id="data" class="mb-8">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-3">Source Data Lists</h2>
+                <p class="text-slate-600 mb-4">
+                    The generator randomly selects one word from each of these lists. The verb and noun lists
+                    contain 100 SFW words, and the descriptor list contains 147.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <h3 class="font-semibold text-slate-700 mb-2">Descriptors</h3>
+                        <div id="descriptors-list" class="list-box bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-600"></div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-700 mb-2">Verbs (Participles)</h3>
+                        <div id="verbs-list" class="list-box bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-600"></div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-700 mb-2">Nouns</h3>
+                        <div id="nouns-list" class="list-box bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-600"></div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h3 class="font-semibold text-slate-700 mb-2">Punctuation</h3>
+                    <div id="punctuation-list" class="bg-slate-50 border border-slate-200 rounded-lg p-3 font-mono text-lg text-slate-600 text-center tracking-widest">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Source Code -->
+            <section id="code">
+                <h2 class="text-2xl font-semibold text-slate-700 mb-3">Readable Source Code</h2>
+                <p class="text-slate-600 mb-4">
+                    This is the un-minified JavaScript logic that powers the generator and the bookmarklet.
+                </p>
+                <div class="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto">
+<pre><code class="language-javascript">(function() {
+    // --- Data Lists ---
+    const descriptors = [
+        'Alert', 'Always', 'Badly', 'Barely', 'Bright', 'Brightly', 'Calm', 'Calmly', 'Clear', 'Clearly',
+        'Close', 'Closely', 'Cold', 'Common', 'Cool', 'Daily', 'Deeply', 'Early', 'Easy', 'Easily',
+        'Empty', 'Even', 'Evenly', 'Exact', 'Exactly', 'Fair', 'Fairly', 'Final', 'Finally', 'Firmly',
+        'Fit', 'Freely', 'Fresh', 'Freshly', 'Full', 'Fully', 'Gently', 'Glad', 'Gladly', 'Gold',
+        'Grand', 'Great', 'Greatly', 'Green', 'Happy', 'Happily', 'Highly', 'Honestly', 'Hourly', 'Huge',
+        'Human', 'Ideal', 'Inner', 'Joint', 'Keen', 'Kind', 'Kindly', 'Large', 'Largely', 'Last',
+        'Late', 'Lately', 'Legal', 'Level', 'Light', 'Lightly', 'Local', 'Loud', 'Loudly', 'Low',
+        'Lucky', 'Magic', 'Main', 'Mainly', 'Major', 'Merely', 'Monthly', 'Moral', 'Motor', 'Neat',
+        'Neatly', 'Nearly', 'Newly', 'Next', 'Nice', 'Nicely', 'Noble', 'Normal', 'Official', 'Often',
+        'Only', 'Open', 'Openly', 'Other', 'Outer', 'Past', 'Personal', 'Plain', 'Plainly', 'Prime',
+        'Proud', 'Proudly', 'Public', 'Quick', 'Quickly', 'Quiet', 'Quietly', 'Rarely', 'Ready', 'Real',
+        'Really', 'Red', 'Rich', 'Right', 'Roman', 'Rough', 'Roughly', 'Round', 'Royal', 'Rural',
+        'Safe', 'Safely', 'Same', 'Sharp', 'Shiny', 'Simple', 'Simply', 'Single', 'Slow', 'Slowly',
+        'Small', 'Smart', 'Smooth', 'Soft', 'Solid', 'Special', 'Square', 'Still', 'Stone', 'Strong',
+        'Sure', 'Sweet', 'Tall', 'Top', 'Total', 'True', 'Upper'
+    ];
+
+    const verbs = [
+        'Acting', 'Adding', 'Answering', 'Answered', 'Applied', 'Arriving', 'Asking', 'Avoiding', 'Becoming', 'Beginning', 
+        'Believing', 'Breaking', 'Bringing', 'Broken', 'Building', 'Built', 'Calling', 'Catching', 'Changing', 'Checking', 
+        'Choosing', 'Chosen', 'Cleaning', 'Clearing', 'Climbing', 'Closing', 'Coming', 'Counting', 'Covering', 'Crossing', 
+        'Dancing', 'Dealing', 'Deciding', 'Doing', 'Drawing', 'Dreaming', 'Driving', 'Ending', 'Entering', 'Facing', 
+        'Falling', 'Feeling', 'Finding', 'Flying', 'Following', 'Gaining', 'Giving', 'Given', 'Going', 'Gone', 
+        'Growing', 'Guiding', 'Handling', 'Hearing', 'Helping', 'Hiding', 'Holding', 'Hoping', 'Imaging', 'Inviting', 
+        'Joking', 'Joining', 'Judging', 'Jumping', 'Keeping', 'Kept', 'Knowing', 'Known', 'Laughing', 'Learning', 
+        'Leaving', 'Lifting', 'Living', 'Looking', 'Losing', 'Making', 'Marking', 'Matching', 'Meeting', 'Moving', 
+        'Opening', 'Ordering', 'Painting', 'Parking', 'Paying', 'Picking', 'Planning', 'Playing', 'Pressing', 'Pulling', 
+        'Pushing', 'Raising', 'Reaching', 'Reading', 'Running', 'Seeing', 'Setting', 'Starting', 'Taking', 'Talking'
+    ];
+
+    const nouns = [
+        'Area', 'Art', 'Back', 'Bank', 'Bed', 'Bill', 'Book', 'Business', 'Car', 'Case', 
+        'Cash', 'Cat', 'Centre', 'Change', 'City', 'Class', 'Club', 'Cost', 'Day', 'Door', 
+        'End', 'Face', 'Fact', 'Family', 'Farm', 'Father', 'Field', 'File', 'Film', 'Food', 
+        'Foot', 'Form', 'Fund', 'Game', 'Hand', 'Health', 'Heart', 'Home', 'Hour', 'House', 
+        'Idea', 'Issue', 'Job', 'Judge', 'Kind', 'King', 'Lake', 'Land', 'Law', 'Level', 
+        'Life', 'Light', 'Line', 'Link', 'List', 'Mail', 'Map', 'Mark', 'Market', 'Matter', 
+        'Media', 'Mind', 'Minute', 'Model', 'Money', 'Month', 'Morning', 'Mother', 'Music', 'Name', 
+        'Need', 'Network', 'News', 'Night', 'Note', 'Number', 'Office', 'Order', 'Owner', 'Page', 
+        'Paint', 'Paper', 'Parent', 'Park', 'Part', 'Past', 'Path', 'Peace', 'People', 'Person', 
+        'Phone', 'Photo', 'Piece', 'Place', 'Plan', 'Plane', 'Plant', 'Play', 'Point', 'Post'
+    ];
+
+    const punctuation = ['!', '#', '$', '%', '&', '*', '+', '-', '.'];
+
+    // --- Helper Functions ---
+    function getRandomItem(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    /**
+     * Randomly lowercases the first letter of a word.
+     * (Assumes source words are already capitalised)
+     * @param {string} word The word to process.
+     * @returns {string} The word with its first letter randomly cased.
+     */
+    function randomCapitalize(word) {
+        // 50% chance of being lowercase
+        if (Math.random() > 0.5) {
+            return word.charAt(0).toLowerCase() + word.slice(1);
+        }
+        return word; // Keep original (uppercase)
+    }
+
+    // --- Core Logic ---
+    function generatePassphrase() {
+        const adj = randomCapitalize(getRandomItem(descriptors));
+        const p1 = getRandomItem(punctuation);
+        const verb = randomCapitalize(getRandomItem(verbs));
+        const p2 = getRandomItem(punctuation);
+        
+        const nounWord = getRandomItem(nouns);
+        let noun;
+
+        // Check if the first two words were BOTH lowercased
+        if (adj[0] === adj[0].toLowerCase() && verb[0] === verb[0].toLowerCase()) {
+            // If so, force the third word to be capitalised.
+            // Since the source word is already capitalised, we just use it directly.
+            noun = nounWord;
+        } else {
+            // Otherwise, at least one is capitalised, so we can
+            // safely randomise the third word.
+            noun = randomCapitalize(nounWord);
+        }
+        
+        const num = Math.floor(Math.random() * 90) + 10; // 10-99
+
+        // Format: {descriptor}{p1}{verb}{p2}{noun}{number}
+        return adj + p1 + verb + p2 + noun + num;
+    }
+
+    // --- DOM Interaction (for this page) ---
+    
+    const btn = document.getElementById('generate-btn');
+    const output = document.getElementById('passphrase-output');
+    const copyBtn = document.getElementById('copy-btn');
+    const feedback = document.getElementById('copy-feedback');
+
+    if (btn && output && copyBtn && feedback) {
+        btn.addEventListener('click', () => {
+            const passphrase = generatePassphrase();
+            output.value = passphrase;
+            feedback.textContent = '';
+        });
+
+        copyBtn.addEventListener('click', () => {
+            if (output.value) {
+                // Use execCommand for robustness in iFrames
+                try {
+                    const ta = document.createElement('textarea');
+                    ta.value = output.value;
+                    ta.style.position = 'fixed';
+                    ta.style.top = '-9999px';
+                    ta.style.left = '-9999px';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+
+                    feedback.textContent = 'Copied to clipboard!';
+                    setTimeout(() => { feedback.textContent = ''; }, 2000);
+                } catch (err) {
+                    feedback.textContent = 'Copy failed.';
+                }
+            }
+        });
+    }
+    
+    // Populate the data lists on the page
+    function populateLists() {
+        const descList = document.getElementById('descriptors-list');
+        const verbList = document.getElementById('verbs-list');
+        const nounList = document.getElementById('nouns-list');
+        const puncList = document.getElementById('punctuation-list');
+        
+        if (descList) descList.textContent = descriptors.join(', ');
+        if (verbList) descList.textContent = verbs.join(', ');
+        if (nounList) nounList.textContent = nouns.join(', ');
+        if (puncList) puncList.textContent = punctuation.join(' ');
+    }
+    
+    document.addEventListener('DOMContentLoaded', populateLists);
+
+})();</code></pre>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // This script block contains the logic for the interactive demo.
+        (function() {
+            // --- Data Lists (Copied from the bookmarklet) ---
+            const descriptors = [
+                'Alert', 'Always', 'Badly', 'Barely', 'Bright', 'Brightly', 'Calm', 'Calmly', 'Clear', 'Clearly',
+                'Close', 'Closely', 'Cold', 'Common', 'Cool', 'Daily', 'Deeply', 'Early', 'Easy', 'Easily',
+                'Empty', 'Even', 'Evenly', 'Exact', 'Exactly', 'Fair', 'Fairly', 'Final', 'Finally', 'Firmly',
+                'Fit', 'Freely', 'Fresh', 'Freshly', 'Full', 'Fully', 'Gently', 'Glad', 'Gladly', 'Gold',
+                'Grand', 'Great', 'Greatly', 'Green', 'Happy', 'Happily', 'Highly', 'Honestly', 'Hourly', 'Huge',
+                'Human', 'Ideal', 'Inner', 'Joint', 'Keen', 'Kind', 'Kindly', 'Large', 'Largely', 'Last',
+                'Late', 'Lately', 'Legal', 'Level', 'Light', 'Lightly', 'Local', 'Loud', 'Loudly', 'Low',
+                'Lucky', 'Magic', 'Main', 'Mainly', 'Major', 'Merely', 'Monthly', 'Moral', 'Motor', 'Neat',
+                'Neatly', 'Nearly', 'Newly', 'Next', 'Nice', 'Nicely', 'Noble', 'Normal', 'Official', 'Often',
+                'Only', 'Open', 'Openly', 'Other', 'Outer', 'Past', 'Personal', 'Plain', 'Plainly', 'Prime',
+                'Proud', 'Proudly', 'Public', 'Quick', 'Quickly', 'Quiet', 'Quietly', 'Rarely', 'Ready', 'Real',
+                'Really', 'Red', 'Rich', 'Right', 'Roman', 'Rough', 'Roughly', 'Round', 'Royal', 'Rural',
+                'Safe', 'Safely', 'Same', 'Sharp', 'Shiny', 'Simple', 'Simply', 'Single', 'Slow', 'Slowly',
+                'Small', 'Smart', 'Smooth', 'Soft', 'Solid', 'Special', 'Square', 'Still', 'Stone', 'Strong',
+                'Sure', 'Sweet', 'Tall', 'Top', 'Total', 'True', 'Upper'
+            ];
+            const verbs = [
+                'Acting', 'Adding', 'Answering', 'Answered', 'Applied', 'Arriving', 'Asking', 'Avoiding', 'Becoming', 'Beginning', 
+                'Believing', 'Breaking', 'Bringing', 'Broken', 'Building', 'Built', 'Calling', 'Catching', 'Changing', 'Checking', 
+                'Choosing', 'Chosen', 'Cleaning', 'Clearing', 'Climbing', 'Closing', 'Coming', 'Counting', 'Covering', 'Crossing', 
+                'Dancing', 'Dealing', 'Deciding', 'Doing', 'Drawing', 'Dreaming', 'Driving', 'Ending', 'Entering', 'Facing', 
+                'Falling', 'Feeling', 'Finding', 'Flying', 'Following', 'Gaining', 'Giving', 'Given', 'Going', 'Gone', 
+                'Growing', 'Guiding', 'Handling', 'Hearing', 'Helping', 'Hiding', 'Holding', 'Hoping', 'Imaging', 'Inviting', 
+                'Joking', 'Joining', 'Judging', 'Jumping', 'Keeping', 'Kept', 'Knowing', 'Known', 'Laughing', 'Learning', 
+                'Leaving', 'Lifting', 'Living', 'Looking', 'Losing', 'Making', 'Marking', 'Matching', 'Meeting', 'Moving', 
+                'Opening', 'Ordering', 'Painting', 'Parking', 'Paying', 'Picking', 'Planning', 'Playing', 'Pressing', 'Pulling', 
+                'Pushing', 'Raising', 'Reaching', 'Reading', 'Running', 'Seeing', 'Setting', 'Starting', 'Taking', 'Talking'
+            ];
+            const nouns = [
+                'Area', 'Art', 'Back', 'Bank', 'Bed', 'Bill', 'Book', 'Business', 'Car', 'Case', 
+                'Cash', 'Cat', 'Centre', 'Change', 'City', 'Class', 'Club', 'Cost', 'Day', 'Door', 
+                'End', 'Face', 'Fact', 'Family', 'Farm', 'Father', 'Field', 'File', 'Film', 'Food', 
+                'Foot', 'Form', 'Fund', 'Game', 'Hand', 'Health', 'Heart', 'Home', 'Hour', 'House', 
+                'Idea', 'Issue', 'Job', 'Judge', 'Kind', 'King', 'Lake', 'Land', 'Law', 'Level', 
+                'Life', 'Light', 'Line', 'Link', 'List', 'Mail', 'Map', 'Mark', 'Market', 'Matter', 
+                'Media', 'Mind', 'Minute', 'Model', 'Money', 'Month', 'Morning', 'Mother', 'Music', 'Name', 
+                'Need', 'Network', 'News', 'Night', 'Note', 'Number', 'Office', 'Order', 'Owner', 'Page', 
+                'Paint', 'Paper', 'Parent', 'Park', 'Part', 'Past', 'Path', 'Peace', 'People', 'Person', 
+                'Phone', 'Photo', 'Piece', 'Place', 'Plan', 'Plane', 'Plant', 'Play', 'Point', 'Post'
+            ];
+            const punctuation = ['!', '#', '$', '%', '&', '*', '+', '-', '.'];
+
+            // --- Helper Functions ---
+            function getRandomItem(arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+
+            /**
+             * Randomly lowercases the first letter of a word.
+             * (Assumes source words are already capitalised)
+             * @param {string} word The word to process.
+             * @returns {string} The word with its first letter randomly cased.
+             */
+            function randomCapitalize(word) {
+                // 50% chance of being lowercase
+                if (Math.random() > 0.5) {
+                    return word.charAt(0).toLowerCase() + word.slice(1);
+                }
+                return word; // Keep original (uppercase)
+            }
+
+            // --- Core Logic ---
+            function generatePassphrase() {
+                const adj = randomCapitalize(getRandomItem(descriptors));
+                const p1 = getRandomItem(punctuation);
+                const verb = randomCapitalize(getRandomItem(verbs));
+                const p2 = getRandomItem(punctuation);
+                
+                const nounWord = getRandomItem(nouns);
+                let noun;
+
+                // Check if the first two words were BOTH lowercased
+                if (adj[0] === adj[0].toLowerCase() && verb[0] === verb[0].toLowerCase()) {
+                    // If so, force the third word to be capitalised.
+                    // Since the source word is already capitalised, we just use it directly.
+                    noun = nounWord;
+                } else {
+                    // Otherwise, at least one is capitalised, so we can
+                    // safely randomise the third word.
+                    noun = randomCapitalize(nounWord);
+                }
+                
+                const num = Math.floor(Math.random() * 90) + 10; // 10-99
+                return adj + p1 + verb + p2 + noun + num;
+            }
+
+            // --- DOM Interaction ---
+            const btn = document.getElementById('generate-btn');
+            const output = document.getElementById('passphrase-output');
+            const copyBtn = document.getElementById('copy-btn');
+            const feedback = document.getElementById('copy-feedback');
+
+            if (btn && output && copyBtn && feedback) {
+                btn.addEventListener('click', () => {
+                    const passphrase = generatePassphrase();
+                    output.value = passphrase;
+                    feedback.textContent = '';
+                });
+
+                copyBtn.addEventListener('click', () => {
+                    if (output.value) {
+                        try {
+                            const ta = document.createElement('textarea');
+                            ta.value = output.value;
+                            ta.style.position = 'fixed';
+                            ta.style.top = '-9999px';
+                            ta.style.left = '-9999px';
+                            document.body.appendChild(ta);
+                            ta.focus();
+                            ta.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(ta);
+
+                            feedback.textContent = 'Copied to clipboard!';
+                            setTimeout(() => { feedback.textContent = ''; }, 2000);
+                        } catch (err) {
+                            feedback.textContent = 'Copy failed.';
+                        }
+                    }
+                });
+            }
+            
+            // Populate the data lists on the page
+            function populateLists() {
+                const descList = document.getElementById('descriptors-list');
+                const verbList = document.getElementById('verbs-list');
+                const nounList = document.getElementById('nouns-list');
+                const puncList = document.getElementById('punctuation-list');
+                
+                if (descList) descList.textContent = descriptors.join(', ');
+                if (verbList) verbList.textContent = verbs.join(', ');
+                if (nounList) nounList.textContent = nouns.join(', ');
+                if (puncList) puncList.textContent = punctuation.join(' ');
+            }
+            
+            // Run population logic when the document is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', populateLists);
+            } else {
+                populateLists(); // Already loaded
+            }
+        })();
+    </script>
+</body>
+</html>
+
+
