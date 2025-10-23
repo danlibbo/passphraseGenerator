@@ -49,7 +49,7 @@
         <!-- Header -->
         <header class="border-b border-slate-200 pb-4 mb-6">
             <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Passphrase Generator</h1>
-            <p class="text-lg text-slate-600 mt-1">Create a secure, random passphrase in a bookmarklet.</p>
+            <p class="text-lg text-slate-600 mt-1">Create a secure, random passphrase from a bookmarklet.</p>
         </header>
 
         <!-- Main Content -->
@@ -90,7 +90,7 @@
                 </p>
                 <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 flex items-center justify-center">
                     <a id="bookmarklet-link"
-                       href="javascript:(function(){const d=['Alert','Always','Badly','Barely','Bright','Brightly','Calm','Calmly','Clear','Clearly','Close','Closely','Cold','Common','Cool','Daily','Deeply','Early','Easy','Easily','Empty','Even','Evenly','Exact','Exactly','Fair','Fairly','Final','Finally','Firmly','Fit','Freely','Fresh','Freshly','Full','Fully','Gently','Glad','Gladly','Gold','Grand','Great','Greatly','Green','Happy','Happily','Highly','Honestly','Hourly','Huge','Human','Ideal','Inner','Joint','Keen','Kind','Kindly','Large','Largely','Last','Late','Lately','Legal','Level','Light','Lightly','Local','Loud','Loudly','Low','Lucky','Magic','Main','Mainly','Major','Merely','Monthly','Moral','Motor','Neat','Neatly','Nearly','Newly','Next','Nice','Nicely','Noble','Normal','Official','Often','Only','Open','Openly','Other','Outer','Past','Personal','Plain','Plainly','Prime','Proud','Proudly','Public','Quick','Quickly','Quiet','Quietly','Rarely','Ready','Real','Really','Red','Rich','Right','Roman','Rough','Roughly','Round','Royal','Rural','Safe','Safely','Same','Sharp','Shiny','Simple','Simply','Single','Slow','Slowly','Small','Smart','Smooth','Soft','Solid','Special','Square','Still','Stone','Strong','Sure','Sweet','Tall','Top','Total','True','Upper'];const v=['Acting','Adding','Answering','Answered','Applied','Arriving','Asking','Avoiding','Becoming','Beginning','Believing','Breaking','Bringing','Broken','Building','Built','Calling','Catching','Changing','Checking','Choosing','Chosen','Cleaning','Clearing','Climbing','Closing','Coming','Counting','Covering','Crossing','Dancing','Dealing','Deciding','Doing','Drawing','Dreaming','Driving','Ending','Entering','Facing','Falling','Feeling','Finding','Flying','Following','Gaining','Giving','Given','Going','Gone','Growing','Guiding','Handling','Hearing','Helping','Hiding','Holding','Hoping','Imaging','Inviting','Joking','Joining','Judging','Jumping','Keeping','Kept','Knowing','Known','Laughing','Learning','Leaving','Lifting','Living','Looking','Losing','Making','Marking','Matching','Meeting','Moving','Opening','Ordering','Painting','Parking','Paying','Picking','Planning','Playing','Pressing','Pulling','Pushing','Raising','Reaching','Reading','Running','Seeing','Setting','Starting','Taking','Talking'];const n=['Area','Art','Back','Bank','Bed','Bill','Book','Business','Car','Case','Cash','Cat','Centre','Change','City','Class','Club','Cost','Day','Door','End','Face','Fact','Family','Farm','Father','Field','File','Film','Food','Foot','Form','Fund','Game','Hand','Health','Heart','Home','Hour','House','Idea','Issue','Job','Judge','Kind','King','Lake','Land','Law','Level','Life','Light','Line','Link','List','Mail','Map','Mark','Market','Matter','Media','Mind','Minute','Model','Money','Month','Morning','Mother','Music','Name','Need','Network','News','Night','Note','Number','Office','Order','Owner','Page','Paint','Paper','Parent','Park','Part','Past','Path','Peace','People','Person','Phone','Photo','Piece','Place','Plan','Plane','Plant','Play','Point','Post'];const p=['!','#','$','%','&','*','+','-','.'];function r(a){return a[Math.floor(Math.random()*a.length)]}function c(w){return Math.random()>0.5?w.charAt(0).toLowerCase()+w.slice(1):w}const a=c(r(d));const p1=r(p);const b=c(r(v));const p2=r(p);const nWord=r(n);const o=a[0]===a[0].toLowerCase()&&b[0]===b[0].toLowerCase()?nWord:c(nWord);const m=Math.floor(Math.random()*90)+10;const g=a+p1+b+p2+o+m;try{const t=document.createElement('textarea');t.value=g;t.style.position='fixed';t.style.top='-9999px';t.style.left='-9999px';document.body.appendChild(t);t.focus();t.select();document.execCommand('copy');document.body.removeChild(t)}catch(e){prompt('Copy this passphrase:',g)}})();"
+                       href="javascript:(function(){const d=['Alert','Always','Badly','Brave','Bright','Brightly','Calm','Calmly','Clear','Clearly','Close','Closely','Cold','Common','Cool','Daily','Deeply','Direct','Early','Easily','Empty','Even','Evenly','Exact','Exactly','Extra','Fair','Fairly','Final','Finally','Fine','Finely','First','Fit','Fixed','Freely','Fresh','Freshly','Full','Fully','Gently','Glad','Gladly','Gold','Golden','Grand','Great','Greatly','Green','Happy','Happily','Heavy','Highly','Honestly','Hourly','Human','Ideal','Inner','Joint','Keen','Kind','Kindly','Large','Largely','Last','Late','Lately','Legal','Level','Light','Lightly','Local','Loud','Loudly','Low','Lower','Lucky','Magic','Main','Mainly','Major','Merely','Monthly','Moral','Motor','Neat','Neatly','Nearly','Newer','Newly','Next','Noble','Normal','Official','Often','Only','Open','Openly','Other','Outer','Past','Personal','Plain','Plainly','Prime','Proud','Proudly','Public','Quick','Quickly','Quiet','Quietly','Radio','Rapid','Rarely','Real','Really','Rich','Right','Rising','Roman','Royal','Rural','Sadly','Safe','Safely','Same','Sharp','Shiny','Short','Simple','Simply','Single','Slow','Slowly','Small','Smart','Smooth','Soft','Solid','Special','Square','Still','Stone','Strong','Sure','Sweet','Tall','Tidy','Total','True','Upper'];const v=['Acted','Acting','Added','Adding','Answered','Answering','Applied','Arrived','Arriving','Asked','Asking','Avoided','Avoiding','Become','Becoming','Begun','Beginning','Believed','Believing','Bought','Brought','Buying','Building','Built','Called','Calling','Cared','Caring','Catching','Caught','Changed','Changing','Checked','Checking','Choosing','Chosen','Cleaned','Cleaning','Cleared','Clearing','Climbed','Climbing','Closed','Closing','Counted','Counting','Covered','Covering','Crossed','Crossing','Danced','Dancing','Dated','Dating','Dealing','Dealt','Decided','Deciding','Drawn','Dreamed','Dreaming','Driven','Driving','Ended','Ending','Entered','Entering','Faced','Facing','Fallen','Falling','Filled','Filling','Finding','Found','Flown','Flying','Followed','Following','Gained','Gaining','Given','Giving','Going','Gone','Grown','Growing','Guided','Guiding','Handled','Handling','Heard','Hearing','Held','Helping','Hidden','Hiding','Holding','Hoped','Hoping','Imagined','Imaging','Invited','Inviting','Joked','Joined','Joining','Judged','Judging','Jumped','Jumping','Kept','Keeping','Knowing','Known','Laughed','Laughing','Learned','Learning','Leaving','Left','Lifted','Lifting','Lived','Living','Looked','Looking','Losing','Lost','Made','Making','Marked','Marking','Matched','Matching','Meeting','Met','Moved','Moving','Opened','Opening','Ordered','Ordering','Paid','Painted','Painting','Parked','Parking','Paying','Picked','Picking','Planned','Planning','Played','Playing','Pressed','Pressing','Pulled','Pulling','Pushed','Pushing','Raised','Raising','Reached','Reaching','Read','Reading','Run','Running','Seen','Seeing','Set','Setting','Started','Starting','Taken','Taking','Talked','Talking'];const n=['Area','Art','Back','Bank','Bed','Bill','Book','Business','Car','Case','Cash','Cat','Centre','Change','City','Class','Club','Cost','Day','Door','End','Fact','Family','Farm','Father','Field','File','Film','Food','Foot','Force','Form','Fund','Game','Hand','Health','Heart','Home','Hour','House','Idea','Issue','Job','Judge','Kind','King','Lake','Land','Law','Level','Life','Light','Line','Link','List','Mail','Map','Mark','Market','Matter','Media','Mind','Minute','Model','Money','Month','Morning','Mother','Music','Name','Need','Network','News','Night','Note','Number','Office','Order','Owner','Page','Paint','Paper','Parent','Park','Part','Past','Path','Peace','People','Person','Phone','Photo','Place','Plan','Plane','Plant','Play','Point','Post','Price'];function r(a){return a[Math.floor(Math.random()*a.length)]}function c(w){return Math.random()>0.5?w.charAt(0).toLowerCase()+w.slice(1):w}const a=c(r(d));const p1=r(p);const b=c(r(v));const p2=r(p);const nWord=r(n);const o=a[0]===a[0].toLowerCase()&&b[0]===b[0].toLowerCase()?nWord:c(nWord);const m=Math.floor(Math.random()*90)+10;const g=a+p1+b+p2+o+m;try{const t=document.createElement('textarea');t.value=g;t.style.position='fixed';t.style.top='-9999px';t.style.left='-9999px';document.body.appendChild(t);t.focus();t.select();document.execCommand('copy');document.body.removeChild(t)}catch(e){prompt('Copy this passphrase:',g)}})();"
                        class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-200 cursor-move focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
                         Drag to Bookmarks →
                     </a>
@@ -125,8 +125,8 @@
             <section id="data" class="mb-8">
                 <h2 class="text-2xl font-semibold text-slate-700 mb-3">Source Data Lists</h2>
                 <p class="text-slate-600 mb-4">
-                    The generator randomly selects one word from each of these lists. The verb and noun lists
-                    contain 100 SFW words, and the descriptor list contains 147.
+                    The generator randomly selects one word from each of these lists. The noun list
+                    contains 100 SFW words, the descriptor list contains 147, and the verb list now contains 173.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
@@ -305,7 +305,7 @@
         const puncList = document.getElementById('punctuation-list');
         
         if (descList) descList.textContent = descriptors.join(', ');
-        if (verbList) descList.textContent = verbs.join(', ');
+        if (verbList) verbList.textContent = verbs.join(', ');
         if (nounList) nounList.textContent = nouns.join(', ');
         if (puncList) puncList.textContent = punctuation.join(' ');
     }
@@ -323,45 +323,54 @@
         (function() {
             // --- Data Lists (Copied from the bookmarklet) ---
             const descriptors = [
-                'Alert', 'Always', 'Badly', 'Barely', 'Bright', 'Brightly', 'Calm', 'Calmly', 'Clear', 'Clearly',
-                'Close', 'Closely', 'Cold', 'Common', 'Cool', 'Daily', 'Deeply', 'Early', 'Easy', 'Easily',
-                'Empty', 'Even', 'Evenly', 'Exact', 'Exactly', 'Fair', 'Fairly', 'Final', 'Finally', 'Firmly',
-                'Fit', 'Freely', 'Fresh', 'Freshly', 'Full', 'Fully', 'Gently', 'Glad', 'Gladly', 'Gold',
-                'Grand', 'Great', 'Greatly', 'Green', 'Happy', 'Happily', 'Highly', 'Honestly', 'Hourly', 'Huge',
-                'Human', 'Ideal', 'Inner', 'Joint', 'Keen', 'Kind', 'Kindly', 'Large', 'Largely', 'Last',
-                'Late', 'Lately', 'Legal', 'Level', 'Light', 'Lightly', 'Local', 'Loud', 'Loudly', 'Low',
-                'Lucky', 'Magic', 'Main', 'Mainly', 'Major', 'Merely', 'Monthly', 'Moral', 'Motor', 'Neat',
-                'Neatly', 'Nearly', 'Newly', 'Next', 'Nice', 'Nicely', 'Noble', 'Normal', 'Official', 'Often',
-                'Only', 'Open', 'Openly', 'Other', 'Outer', 'Past', 'Personal', 'Plain', 'Plainly', 'Prime',
-                'Proud', 'Proudly', 'Public', 'Quick', 'Quickly', 'Quiet', 'Quietly', 'Rarely', 'Ready', 'Real',
-                'Really', 'Red', 'Rich', 'Right', 'Roman', 'Rough', 'Roughly', 'Round', 'Royal', 'Rural',
-                'Safe', 'Safely', 'Same', 'Sharp', 'Shiny', 'Simple', 'Simply', 'Single', 'Slow', 'Slowly',
-                'Small', 'Smart', 'Smooth', 'Soft', 'Solid', 'Special', 'Square', 'Still', 'Stone', 'Strong',
-                'Sure', 'Sweet', 'Tall', 'Top', 'Total', 'True', 'Upper'
+                'Alert', 'Always', 'Badly', 'Brave', 'Bright', 'Brightly', 'Calm', 'Calmly', 'Clear', 'Clearly',
+                'Close', 'Closely', 'Cold', 'Common', 'Cool', 'Daily', 'Deeply', 'Direct', 'Early', 'Easily',
+                'Empty', 'Even', 'Evenly', 'Exact', 'Exactly', 'Extra', 'Fair', 'Fairly', 'Final', 'Finally',
+                'Fine', 'Finely', 'First', 'Fit', 'Fixed', 'Freely', 'Fresh', 'Freshly', 'Full', 'Fully',
+                'Gently', 'Glad', 'Gladly', 'Gold', 'Golden', 'Grand', 'Great', 'Greatly', 'Green', 'Happy',
+                'Happily', 'Heavy', 'Highly', 'Honestly', 'Hourly', 'Human', 'Ideal', 'Inner', 'Joint', 'Keen',
+                'Kind', 'Kindly', 'Large', 'Largely', 'Last', 'Late', 'Lately', 'Legal', 'Level', 'Light',
+                'Lightly', 'Local', 'Loud', 'Loudly', 'Low', 'Lower', 'Lucky', 'Magic', 'Main', 'Mainly',
+                'Major', 'Merely', 'Monthly', 'Moral', 'Motor', 'Neat', 'Neatly', 'Nearly', 'Newer', 'Newly',
+                'Next', 'Noble', 'Normal', 'Official', 'Often', 'Only', 'Open', 'Openly', 'Other', 'Outer',
+                'Past', 'Personal', 'Plain', 'Plainly', 'Prime', 'Proud', 'Proudly', 'Public', 'Quick', 'Quickly',
+                'Quiet', 'Quietly', 'Radio', 'Rapid', 'Rarely', 'Real', 'Really', 'Rich', 'Right', 'Rising',
+                'Roman', 'Royal', 'Rural', 'Sadly', 'Safe', 'Safely', 'Same', 'Sharp', 'Shiny', 'Short',
+                'Simple', 'Simply', 'Single', 'Slow', 'Slowly', 'Small', 'Smart', 'Smooth', 'Soft', 'Solid',
+                'Special', 'Square', 'Still', 'Stone', 'Strong', 'Sure', 'Sweet', 'Tall', 'Tidy', 'Total',
+                'True', 'Upper'
             ];
             const verbs = [
-                'Acting', 'Adding', 'Answering', 'Answered', 'Applied', 'Arriving', 'Asking', 'Avoiding', 'Becoming', 'Beginning', 
-                'Believing', 'Breaking', 'Bringing', 'Broken', 'Building', 'Built', 'Calling', 'Catching', 'Changing', 'Checking', 
-                'Choosing', 'Chosen', 'Cleaning', 'Clearing', 'Climbing', 'Closing', 'Coming', 'Counting', 'Covering', 'Crossing', 
-                'Dancing', 'Dealing', 'Deciding', 'Doing', 'Drawing', 'Dreaming', 'Driving', 'Ending', 'Entering', 'Facing', 
-                'Falling', 'Feeling', 'Finding', 'Flying', 'Following', 'Gaining', 'Giving', 'Given', 'Going', 'Gone', 
-                'Growing', 'Guiding', 'Handling', 'Hearing', 'Helping', 'Hiding', 'Holding', 'Hoping', 'Imaging', 'Inviting', 
-                'Joking', 'Joining', 'Judging', 'Jumping', 'Keeping', 'Kept', 'Knowing', 'Known', 'Laughing', 'Learning', 
-                'Leaving', 'Lifting', 'Living', 'Looking', 'Losing', 'Making', 'Marking', 'Matching', 'Meeting', 'Moving', 
-                'Opening', 'Ordering', 'Painting', 'Parking', 'Paying', 'Picking', 'Planning', 'Playing', 'Pressing', 'Pulling', 
-                'Pushing', 'Raising', 'Reaching', 'Reading', 'Running', 'Seeing', 'Setting', 'Starting', 'Taking', 'Talking'
+                'Acted', 'Acting', 'Added', 'Adding', 'Answered', 'Answering', 'Applied', 'Arrived', 'Arriving', 'Asked', 
+                'Asking', 'Avoided', 'Avoiding', 'Become', 'Becoming', 'Begun', 'Beginning', 'Believed', 'Believing', 'Bought', 
+                'Brought', 'Buying', 'Building', 'Built', 'Called', 'Calling', 'Cared', 'Caring', 'Catching', 'Caught', 
+                'Changed', 'Changing', 'Checked', 'Checking', 'Choosing', 'Chosen', 'Cleaned', 'Cleaning', 'Cleared', 'Clearing', 
+                'Climbed', 'Climbing', 'Closed', 'Closing', 'Counted', 'Counting', 'Covered', 'Covering', 'Crossed', 'Crossing', 
+                'Danced', 'Dancing', 'Dated', 'Dating', 'Dealing', 'Dealt', 'Decided', 'Deciding', 'Drawn', 'Dreamed', 
+                'Dreaming', 'Driven', 'Driving', 'Ended', 'Ending', 'Entered', 'Entering', 'Faced', 'Facing', 'Fallen', 
+                'Falling', 'Filled', 'Filling', 'Finding', 'Found', 'Flown', 'Flying', 'Followed', 'Following', 'Gained', 
+                'Gaining', 'Given', 'Giving', 'Going', 'Gone', 'Grown', 'Growing', 'Guided', 'Guiding', 'Handled', 
+                'Handling', 'Heard', 'Hearing', 'Held', 'Helping', 'Hidden', 'Hiding', 'Holding', 'Hoped', 'Hoping', 
+                'Imagined', 'Imaging', 'Invited', 'Inviting', 'Joked', 'Joined', 'Joining', 'Judged', 'Judging', 'Jumped', 
+                'Jumping', 'Kept', 'Keeping', 'Knowing', 'Known', 'Laughed', 'Laughing', 'Learned', 'Learning', 'Leaving', 
+                'Left', 'Lifted', 'Lifting', 'Lived', 'Living', 'Looked', 'Looking', 'Losing', 'Lost', 'Made', 
+                'Making', 'Marked', 'Marking', 'Matched', 'Matching', 'Meeting', 'Met', 'Moved', 'Moving', 'Opened', 
+                'Opening', 'Ordered', 'Ordering', 'Paid', 'Painted', 'Painting', 'Parked', 'Parking', 'Paying', 'Picked', 
+                'Picking', 'Planned', 'Planning', 'Played', 'Playing', 'Pressed', 'Pressing', 'Pulled', 'Pulling', 'Pushed', 
+                'Pushing', 'Raised', 'Raising', 'Reached', 'Reaching', 'Read', 'Reading', 'Run', 'Running', 'Seen', 
+                'Seeing', 'Set', 'Setting', 'Started', 'Starting', 'Taken', 'Taking', 'Talked', 'Talking'
             ];
             const nouns = [
                 'Area', 'Art', 'Back', 'Bank', 'Bed', 'Bill', 'Book', 'Business', 'Car', 'Case', 
                 'Cash', 'Cat', 'Centre', 'Change', 'City', 'Class', 'Club', 'Cost', 'Day', 'Door', 
-                'End', 'Face', 'Fact', 'Family', 'Farm', 'Father', 'Field', 'File', 'Film', 'Food', 
-                'Foot', 'Form', 'Fund', 'Game', 'Hand', 'Health', 'Heart', 'Home', 'Hour', 'House', 
+                'End', 'Fact', 'Family', 'Farm', 'Father', 'Field', 'File', 'Film', 'Food', 'Foot', 
+                'Force', 'Form', 'Fund', 'Game', 'Hand', 'Health', 'Heart', 'Home', 'Hour', 'House', 
                 'Idea', 'Issue', 'Job', 'Judge', 'Kind', 'King', 'Lake', 'Land', 'Law', 'Level', 
                 'Life', 'Light', 'Line', 'Link', 'List', 'Mail', 'Map', 'Mark', 'Market', 'Matter', 
                 'Media', 'Mind', 'Minute', 'Model', 'Money', 'Month', 'Morning', 'Mother', 'Music', 'Name', 
                 'Need', 'Network', 'News', 'Night', 'Note', 'Number', 'Office', 'Order', 'Owner', 'Page', 
                 'Paint', 'Paper', 'Parent', 'Park', 'Part', 'Past', 'Path', 'Peace', 'People', 'Person', 
-                'Phone', 'Photo', 'Piece', 'Place', 'Plan', 'Plane', 'Plant', 'Play', 'Point', 'Post'
+                'Phone', 'Photo', 'Place', 'Plan', 'Plane', 'Plant', 'Play', 'Point', 'Post', 'Price'
             ];
             const punctuation = ['!', '#', '$', '%', '&', '*', '+', '-', '.'];
 
@@ -468,5 +477,8 @@
     </script>
 </body>
 </html>
+
+
+
 
 
