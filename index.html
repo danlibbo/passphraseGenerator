@@ -78,7 +78,7 @@
                         </button>
                     </div>
                 </div>
-                <p id="copy-feedback" class="text-green-600 h-4 text-sm mt-2"></p>
+                <!-- Removed the old <p id="copy-feedback"> element -->
             </section>
 
             <!-- Get the Bookmarklet -->
@@ -89,8 +89,9 @@
                     will generate a new passphrase and copy it to your clipboard.
                 </p>
                 <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 flex items-center justify-center">
+                    <!-- UPDATED: The href attribute now contains the new bookmarklet logic with the passphrase in the toast -->
                     <a id="bookmarklet-link"
-                       href="javascript:(function(){const d=['Alert','Always','Badly','Brave','Bright','Brightly','Calm','Calmly','Clear','Clearly','Close','Closely','Cold','Common','Cool','Daily','Deeply','Direct','Early','Easily','Empty','Even','Evenly','Exact','Exactly','Extra','Fair','Fairly','Final','Finally','Fine','Finely','First','Fit','Fixed','Freely','Fresh','Freshly','Full','Fully','Gently','Glad','Gladly','Gold','Golden','Grand','Great','Greatly','Green','Happy','Happily','Heavy','Highly','Honestly','Hourly','Human','Ideal','Inner','Joint','Keen','Kind','Kindly','Large','Largely','Last','Late','Lately','Legal','Level','Light','Lightly','Local','Loud','Loudly','Low','Lower','Lucky','Magic','Main','Mainly','Major','Merely','Monthly','Moral','Motor','Neat','Neatly','Nearly','Newer','Newly','Next','Noble','Normal','Official','Often','Only','Open','Openly','Other','Outer','Past','Personal','Plain','Plainly','Prime','Proud','Proudly','Public','Quick','Quickly','Quiet','Quietly','Radio','Rapid','Rarely','Real','Really','Rich','Right','Rising','Roman','Royal','Rural','Sadly','Safe','Safely','Same','Sharp','Shiny','Short','Simple','Simply','Single','Slow','Slowly','Small','Smart','Smooth','Soft','Solid','Special','Square','Still','Stone','Strong','Sure','Sweet','Tall','Tidy','Total','True','Upper'];const v=['Acted','Acting','Added','Adding','Answered','Answering','Applied','Arrived','Arriving','Asked','Asking','Avoided','Avoiding','Become','Becoming','Begun','Beginning','Believed','Believing','Bought','Brought','Buying','Building','Built','Called','Calling','Cared','Caring','Catching','Caught','Changed','Changing','Checked','Checking','Choosing','Chosen','Cleaned','Cleaning','Cleared','Clearing','Climbed','Climbing','Closed','Closing','Counted','Counting','Covered','Covering','Crossed','Crossing','Danced','Dancing','Dated','Dating','Dealing','Dealt','Decided','Deciding','Drawn','Dreamed','Dreaming','Driven','Driving','Ended','Ending','Entered','Entering','Faced','Facing','Fallen','Falling','Filled','Filling','Finding','Found','Flown','Flying','Followed','Following','Gained','Gaining','Given','Giving','Going','Gone','Grown','Growing','Guided','Guiding','Handled','Handling','Heard','Hearing','Held','Helping','Hidden','Hiding','Holding','Hoped','Hoping','Imagined','Imaging','Invited','Inviting','Joked','Joined','Joining','Judged','Judging','Jumped','Jumping','Kept','Keeping','Knowing','Known','Laughed','Laughing','Learned','Learning','Leaving','Left','Lifted','Lifting','Lived','Living','Looked','Looking','Losing','Lost','Made','Making','Marked','Marking','Matched','Matching','Meeting','Met','Moved','Moving','Opened','Opening','Ordered','Ordering','Paid','Painted','Painting','Parked','Parking','Paying','Picked','Picking','Planned','Planning','Played','Playing','Pressed','Pressing','Pulled','Pulling','Pushed','Pushing','Raised','Raising','Reached','Reaching','Read','Reading','Run','Running','Seen','Seeing','Set','Setting','Started','Starting','Taken','Taking','Talked','Talking'];const n=['Area','Art','Back','Bank','Bed','Bill','Book','Business','Car','Case','Cash','Cat','Centre','Change','City','Class','Club','Cost','Day','Door','End','Fact','Family','Farm','Father','Field','File','Film','Food','Foot','Force','Form','Fund','Game','Hand','Health','Heart','Home','Hour','House','Idea','Issue','Job','Judge','Kind','King','Lake','Land','Law','Level','Life','Light','Line','Link','List','Mail','Map','Mark','Market','Matter','Media','Mind','Minute','Model','Money','Month','Morning','Mother','Music','Name','Need','Network','News','Night','Note','Number','Office','Order','Owner','Page','Paint','Paper','Parent','Park','Part','Past','Path','Peace','People','Person','Phone','Photo','Place','Plan','Plane','Plant','Play','Point','Post','Price'];function r(a){return a[Math.floor(Math.random()*a.length)]}function c(w){return Math.random()>0.5?w.charAt(0).toLowerCase()+w.slice(1):w}const a=c(r(d));const p1=r(p);const b=c(r(v));const p2=r(p);const nWord=r(n);const o=a[0]===a[0].toLowerCase()&&b[0]===b[0].toLowerCase()?nWord:c(nWord);const m=Math.floor(Math.random()*90)+10;const g=a+p1+b+p2+o+m;try{const t=document.createElement('textarea');t.value=g;t.style.position='fixed';t.style.top='-9999px';t.style.left='-9999px';document.body.appendChild(t);t.focus();t.select();document.execCommand('copy');document.body.removeChild(t)}catch(e){prompt('Copy this passphrase:',g)}})();"
+                       href="javascript:(function(){const d=['Alert','Always','Badly','Brave','Bright','Brightly','Calm','Calmly','Clear','Clearly','Close','Closely','Cold','Common','Cool','Daily','Deeply','Direct','Early','Easily','Empty','Even','Evenly','Exact','Exactly','Extra','Fair','Fairly','Final','Finally','Fine','Finely','First','Fit','Fixed','Freely','Fresh','Freshly','Full','Fully','Gently','Glad','Gladly','Gold','Golden','Grand','Great','Greatly','Green','Happy','Happily','Heavy','Highly','Honestly','Hourly','Human','Ideal','Inner','Joint','Keen','Kind','Kindly','Large','Largely','Last','Late','Lately','Legal','Level','Light','Lightly','Local','Loud','Loudly','Low','Lower','Lucky','Magic','Main','Mainly','Major','Merely','Monthly','Moral','Motor','Neat','Neatly','Nearly','Newer','Newly','Next','Noble','Normal','Official','Often','Only','Open','Openly','Other','Outer','Past','Personal','Plain','Plainly','Prime','Proud','Proudly','Public','Quick','Quickly','Quiet','Quietly','Radio','Rapid','Rarely','Real','Really','Rich','Right','Rising','Roman','Royal','Rural','Sadly','Safe','Safely','Same','Sharp','Shiny','Short','Simple','Simply','Single','Slow','Slowly','Small','Smart','Smooth','Soft','Solid','Special','Square','Still','Stone','Strong','Sure','Sweet','Tall','Tidy','Total','True','Upper'];const v=['Acted','Acting','Added','Adding','Answered','Answering','Applied','Arrived','Arriving','Asked','Asking','Avoided','Avoiding','Become','Becoming','Begun','Beginning','Believed','Believing','Bought','Brought','Buying','Building','Built','Called','Calling','Cared','Caring','Catching','Caught','Changed','Changing','Checked','Checking','Choosing','Chosen','Cleaned','Cleaning','Cleared','Clearing','Climbed','Climbing','Closed','Closing','Counted','Counting','Covered','Covering','Crossed','Crossing','Danced','Dancing','Dated','Dating','Dealing','Dealt','Decided','Deciding','Drawn','Dreamed','Dreaming','Driven','Driving','Ended','Ending','Entered','Entering','Faced','Facing','Fallen','Falling','Filled','Filling','Finding','Found','Flown','Flying','Followed','Following','Gained','Gaining','Given','Giving','Going','Gone','Grown','Growing','Guided','Guiding','Handled','Handling','Heard','Hearing','Held','Helping','Hidden','Hiding','Holding','Hoped','Hoping','Imagined','Imaging','Invited','Inviting','Joked','Joined','Joining','Judged','Judging','Jumped','Jumping','Kept','Keeping','Knowing','Known','Laughed','Laughing','Learned','Learning','Leaving','Left','Lifted','Lifting','Lived','Living','Looked','Looking','Losing','Lost','Made','Making','Marked','Marking','Matched','Matching','Meeting','Met','Moved','Moving','Opened','Opening','Ordered','Ordering','Paid','Painted','Painting','Parked','Parking','Paying','Picked','Picking','Planned','Planning','Played','Playing','Pressed','Pressing','Pulled','Pulling','Pushed','Pushing','Raised','Raising','Reached','Reaching','Read','Reading','Run','Running','Seen','Seeing','Set','Setting','Started','Starting','Taken','Taking','Talked','Talking'];const n=['Area','Art','Back','Bunk','Bed','Bill','Book','Business','Car','Case','Cash','Cat','Centre','Change','City','Class','Club','Cost','Day','Door','End','Fact','Family','Farm','Father','Field','File','Film','Food','Foot','Force','Form','Fund','Game','Hand','Health','Heart','Home','Hour','House','Idea','Issue','Job','Judge','Kind','King','Lake','Land','Law','Level','Life','Light','Line','Link','List','Mail','Map','Mark','Market','Matter','Media','Mind','Minute','Model','Money','Month','Morning','Mother','Music','Name','Need','Network','News','Night','Note','Number','Office','Order','Owner','Page','Paint','Paper','Parent','Park','Part','Past','Path','Peace','People','Person','Phone','Photo','Place','Plan','Plane','Plant','Play','Point','Post','Price'];const p=['!','#','$','%','&','*','+','-','.'];function r(a){return a[Math.floor(Math.random()*a.length)]}function c(w){return Math.random()>0.5?w.charAt(0).toLowerCase()+w.slice(1):w}const a=c(r(d));const p1=r(p);const b=c(r(v));const p2=r(p);const nWord=r(n);const o=a[0]===a[0].toLowerCase()&&b[0]===b[0].toLowerCase()?nWord:c(nWord);const m=Math.floor(Math.random()*90)+10;const g=a+p1+b+p2+o+m;try{const t=document.createElement('textarea');t.value=g;t.style.position='fixed';t.style.top='-9999px';t.style.left='-9999px';document.body.appendChild(t);t.focus();t.select();document.execCommand('copy');document.body.removeChild(t);try{const s=document.createElement('div'),t1=document.createTextNode(g),br=document.createElement('br'),t2=document.createElement('span');t2.textContent='copied to clipboard!',t2.style.fontSize='0.875rem',t2.style.fontWeight='400',s.appendChild(t1),s.appendChild(br),s.appendChild(t2),s.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-50px);background-color:#22c55e;color:white;padding:12px 24px;border-radius:8px;font-family:sans-serif;font-weight:600;z-index:9999;opacity:0;transition:all 0.3s ease-in-out;text-align:center;',document.body.appendChild(s),setTimeout(()=>{s.style.opacity='1',s.style.transform='translateX(-50%) translateY(0)'},10),setTimeout(()=>{s.style.opacity='0',s.style.transform='translateX(-50%) translateY(-50px)'},5000),setTimeout(()=>{document.body.removeChild(s)},5300)}catch(e){}}catch(e){prompt('Copy this passphrase:',g)}})();"
                        class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-200 cursor-move focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
                         Drag to Bookmarks →
                     </a>
@@ -101,7 +102,7 @@
             <section id="how-it-works" class="mb-8">
                 <h2 class="text-2xl font-semibold text-slate-700 mb-3">How It Works</h2>
                 <p class="text-slate-600 mb-4">
-                    This generator creates a passphrase by combining five random components
+                    This generator creates a passphrase by combining five randomised components
                     plus a random number. It also randomly capitalises the first letter of each word
                     to increase entropy.
                 </p>
@@ -155,6 +156,7 @@
                 <p class="text-slate-600 mb-4">
                     This is the un-minified JavaScript logic that powers the generator and the bookmarklet.
                 </p>
+                <!-- UPDATED: The readable code now includes the logic for the self-creating toast notification -->
                 <div class="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto">
 <pre><code class="language-javascript">(function() {
     // --- Data Lists ---
@@ -256,21 +258,150 @@
         const num = Math.floor(Math.random() * 90) + 10; // 10-99
 
         // Format: {descriptor}{p1}{verb}{p2}{noun}{number}
-        return adj + p1 + verb + p2 + noun + num;
+        const passphrase = adj + p1 + verb + p2 + noun + num;
+
+        // --- Clipboard and Toast Logic ---
+        // This function is self-contained for the bookmarklet.
+        try {
+            // 1. Copy to clipboard
+            const t = document.createElement('textarea');
+            t.value = passphrase;
+            t.style.position = 'fixed';
+            t.style.top = '-9999px';
+            t.style.left = '-9999px';
+            document.body.appendChild(t);
+            t.focus();
+            t.select();
+            document.execCommand('copy');
+            document.body.removeChild(t);
+
+            // 2. Show toast notification
+            try {
+                const s = document.createElement('div');
+                // UPDATED: Set innerHTML to include passphrase and line break
+                // s.innerHTML = `${passphrase} <br/> <span style="font-size: 0.875rem; font-weight: 400;">copied to clipboard!</span>`;
+                
+                // NEW: Build toast with DOM elements to avoid HTML parsing issues in bookmarklet
+                const t1 = document.createTextNode(passphrase);
+                const br = document.createElement('br');
+                const t2 = document.createElement('span');
+                t2.textContent = 'copied to clipboard!';
+                t2.style.fontSize = '0.875rem';
+                t2.style.fontWeight = '400';
+                s.appendChild(t1);
+                s.appendChild(br);
+                s.appendChild(t2);
+
+                // Apply inline styles for the toast, as it runs on any site
+                s.style.cssText = `
+                    position: fixed;
+                    top: 20px; /* CHANGED */
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-50px); /* CHANGED (hidden state) */
+                    background-color: #22c55e; /* Tailwind green-500 */
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 8px;
+                    font-family: sans-serif;
+                    font-weight: 600;
+                    z-index: 9999;
+                    opacity: 0;
+                    transition: all 0.3s ease-in-out;
+                    text-align: center;
+                `;
+                document.body.appendChild(s);
+
+                // Short delay to allow CSS to apply before transitioning
+                setTimeout(() => {
+                    s.style.opacity = '1';
+                    s.style.transform = 'translateX(-50%) translateY(0)';
+                }, 10);
+
+                // Start fade-out after 5 seconds
+                setTimeout(() => {
+                    s.style.opacity = '0';
+                    s.style.transform = 'translateX(-50%) translateY(-50px)'; /* CHANGED */
+                }, 5000); /* CHANGED */
+
+                // Remove from DOM after transition finishes
+                setTimeout(() => {
+                    document.body.removeChild(s);
+                }, 5300); /* CHANGED */
+            } catch (e) {
+                // Fail silently if toast creation fails
+            }
+
+        } catch (e) {
+            // Fallback for copy failure
+            prompt('Copy this passphrase:', passphrase);
+        }
+
+        return passphrase; // Return for the on-page generator
     }
 
     // --- DOM Interaction (for this page) ---
     
+    // This logic is separate from the bookmarklet's self-contained function.
+    // It controls the interactive elements on *this* page.
+    
     const btn = document.getElementById('generate-btn');
     const output = document.getElementById('passphrase-output');
     const copyBtn = document.getElementById('copy-btn');
-    const feedback = document.getElementById('copy-feedback');
+    const toast = document.getElementById('copy-toast');
+    let toastTimeout; // To manage the toast's fade-out
 
-    if (btn && output && copyBtn && feedback) {
+    /**
+     * Shows the on-page toast notification.
+     * @param {string} message The message to display (can be HTML).
+     */
+    function showToast(message) {
+        if (!toast) return;
+
+        // Clear any existing timeout to prevent premature hiding
+        if (toastTimeout) {
+            clearTimeout(toastTimeout);
+        }
+
+        // UPDATED: Use innerHTML to render the message
+        toast.innerHTML = message;
+        
+        // Apply "show" classes
+        toast.classList.remove('opacity-0', 'invisible', '-translate-y-12');
+        toast.classList.add('opacity-100', 'visible', 'translate-y-0');
+
+        // Set a timeout to hide the toast
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            toast.classList.add('opacity-0', 'invisible', '-translate-y-12');
+        }, 5000); // Hide after 5 seconds
+    }
+
+    if (btn && output && copyBtn && toast) {
         btn.addEventListener('click', () => {
-            const passphrase = generatePassphrase();
-            output.value = passphrase;
-            feedback.textContent = '';
+            // The generatePassphrase() function for the bookmarklet
+            // *also* copies and shows a toast. We only want the
+            // passphrase value here. So, we need a separate generator
+            // function for the on-page demo.
+            
+            // Let's redefine a simpler generator for the page demo
+            // to avoid the double-copy/double-toast.
+            const pageGenerator = () => {
+                const adj = randomCapitalize(getRandomItem(descriptors));
+                const p1 = getRandomItem(punctuation);
+                const verb = randomCapitalize(getRandomItem(verbs));
+                const p2 = getRandomItem(punctuation);
+                const nounWord = getRandomItem(nouns);
+                let noun;
+                if (adj[0] === adj[0].toLowerCase() && verb[0] === verb[0].toLowerCase()) {
+                    noun = nounWord;
+                } else {
+                    noun = randomCapitalize(nounWord);
+                }
+                const num = Math.floor(Math.random() * 90) + 10;
+                return adj + p1 + verb + p2 + noun + num;
+            };
+            
+            output.value = pageGenerator();
         });
 
         copyBtn.addEventListener('click', () => {
@@ -288,10 +419,11 @@
                     document.execCommand('copy');
                     document.body.removeChild(ta);
 
-                    feedback.textContent = 'Copied to clipboard!';
-                    setTimeout(() => { feedback.textContent = ''; }, 2000);
+                    // UPDATED: Show the on-page toast with the passphrase
+                    showToast(`${output.value} <br/> <span class="text-sm font-normal">copied to clipboard!</span>`);
+
                 } catch (err) {
-                    feedback.textContent = 'Copy failed.';
+                    showToast('Copy failed.');
                 }
             }
         });
@@ -312,10 +444,23 @@
     
     document.addEventListener('DOMContentLoaded', populateLists);
 
+    // ThisIIFE for the page script is separate from the bookmarklet's IIFE.
+    // The <pre><code> block now shows the bookmarklet's source.
+    // The bookmarklet href has the minified version of that source.
+    // This script block handles the page's UI *only*.
+    // I had to separate the page's generate logic from the bookmarklet's
+    // generate-and-copy logic to prevent a double-toast.
+
 })();</code></pre>
                 </div>
             </section>
         </main>
+    </div>
+
+    <!-- NEW: Toast Notification Element -->
+    <!-- UPDATED: Changed bottom-5 to top-5 and translate-y-5 to -translate-y-12 -->
+    <div id="copy-toast" class="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white py-3 px-6 rounded-lg font-semibold shadow-lg opacity-0 invisible transform -translate-y-12 transition-all duration-300 ease-in-out z-50 text-center">
+        Copied to clipboard!
     </div>
 
     <script>
@@ -393,8 +538,8 @@
                 return word; // Keep original (uppercase)
             }
 
-            // --- Core Logic ---
-            function generatePassphrase() {
+            // --- Core Logic (for page UI only) ---
+            function generatePassphraseForPage() {
                 const adj = randomCapitalize(getRandomItem(descriptors));
                 const p1 = getRandomItem(punctuation);
                 const verb = randomCapitalize(getRandomItem(verbs));
@@ -405,13 +550,9 @@
 
                 // Check if the first two words were BOTH lowercased
                 if (adj[0] === adj[0].toLowerCase() && verb[0] === verb[0].toLowerCase()) {
-                    // If so, force the third word to be capitalised.
-                    // Since the source word is already capitalised, we just use it directly.
-                    noun = nounWord;
+                    noun = nounWord; // Force capitalise
                 } else {
-                    // Otherwise, at least one is capitalised, so we can
-                    // safely randomise the third word.
-                    noun = randomCapitalize(nounWord);
+                    noun = randomCapitalize(nounWord); // Randomise
                 }
                 
                 const num = Math.floor(Math.random() * 90) + 10; // 10-99
@@ -422,13 +563,37 @@
             const btn = document.getElementById('generate-btn');
             const output = document.getElementById('passphrase-output');
             const copyBtn = document.getElementById('copy-btn');
-            const feedback = document.getElementById('copy-feedback');
+            const toast = document.getElementById('copy-toast');
+            let toastTimeout; // To manage the toast's fade-out
 
-            if (btn && output && copyBtn && feedback) {
+            /**
+             * Shows the on-page toast notification.
+             * @param {string} message The message to display (can be HTML).
+             */
+            function showToast(message) {
+                if (!toast) return;
+
+                if (toastTimeout) {
+                    clearTimeout(toastTimeout);
+                }
+
+                // UPDATED: Use innerHTML to render the message
+                toast.innerHTML = message;
+                
+                // Apply "show" classes
+                toast.classList.remove('opacity-0', 'invisible', '-translate-y-12');
+                toast.classList.add('opacity-100', 'visible', 'translate-y-0');
+
+                // Set a timeout to hide the toast
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                    toast.classList.add('opacity-0', 'invisible', '-translate-y-12');
+                }, 5000); // Hide after 5 seconds
+            }
+
+            if (btn && output && copyBtn && toast) {
                 btn.addEventListener('click', () => {
-                    const passphrase = generatePassphrase();
-                    output.value = passphrase;
-                    feedback.textContent = '';
+                    output.value = generatePassphraseForPage();
                 });
 
                 copyBtn.addEventListener('click', () => {
@@ -445,10 +610,11 @@
                             document.execCommand('copy');
                             document.body.removeChild(ta);
 
-                            feedback.textContent = 'Copied to clipboard!';
-                            setTimeout(() => { feedback.textContent = ''; }, 2000);
+                            // UPDATED: Show the on-page toast with the passphrase
+                            showToast(`${output.value} <br/> <span class="text-sm font-normal">copied to clipboard!</span>`);
+
                         } catch (err) {
-                            feedback.textContent = 'Copy failed.';
+                            showToast('Copy failed.');
                         }
                     }
                 });
@@ -477,8 +643,6 @@
     </script>
 </body>
 </html>
-
-
 
 
 
